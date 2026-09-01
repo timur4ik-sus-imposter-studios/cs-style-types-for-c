@@ -1,10 +1,12 @@
-#ifndef FOREACH
-#define FOREACH
- 
-#include <stdio.h>
-#include <stdlib.h>
+#ifndef FOREACH_H
+#define FOREACH_H
 
-#define foreach( iter__, head__ ) \
-  for ( iter__ = (head__); iter__ != 0; iter__ = iter__->next )
+typedef struct Node {
+    struct Node* next;
+} Node;
+
+typedef void (*foreach_callback)(void* node, void* user_data);
+
+void list_foreach(void* head, foreach_callback callback, void* user_data);
 
 #endif
